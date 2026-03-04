@@ -2,7 +2,24 @@
 
 Finnish spirometry reference values from Kainu et al. (2015) as an R package.
 
-Covers 10 parameters (FVC, FEV1, FEV1/FVC, FEV6, FEV1/FEV6, PEF, MMEF, MEF75, MEF50, MEF25) for Finnish adults aged 18–90. The API mirrors [rspiro](https://cran.r-project.org/package=rspiro) for easy side-by-side comparison with GLI-2012.
+Covers 10 parameters for Finnish adults aged 18–90. The API mirrors [rspiro](https://cran.r-project.org/package=rspiro) for easy side-by-side comparison with GLI-2012.
+
+**Web calculator:** [rikhardfi.github.io/spirometry-calculator](https://rikhardfi.github.io/spirometry-calculator/)
+
+## Parameters
+
+| Parameter | Description | Unit |
+|-----------|-------------|------|
+| FEV1 | Forced expiratory volume in 1 second | L |
+| FVC | Forced vital capacity | L |
+| FEV1/FVC | FEV1 to FVC ratio | ratio |
+| FEV6 | Forced expiratory volume in 6 seconds | L |
+| FEV1/FEV6 | FEV1 to FEV6 ratio | ratio |
+| PEF | Peak expiratory flow | L/s |
+| MMEF | Maximal mid-expiratory flow | L/s |
+| MEF75 | MEF at 75% of FVC | L/s |
+| MEF50 | MEF at 50% of FVC | L/s |
+| MEF25 | MEF at 25% of FVC | L/s |
 
 ## Installation
 
@@ -32,7 +49,7 @@ kainu_lln(50, 177, 1, "FEV1")
 kainu_pctpred(50, 177, 1, FEV1 = 3.5)
 #> [1] 86.5
 
-# Multiple parameters
+# Multiple parameters at once
 kainu_pred(50, 177, 1, c("FEV1", "FVC", "FEV1FVC"))
 ```
 
@@ -51,14 +68,18 @@ kainu_df(patients, params = c("FEV1", "FVC"))
 # Adds columns: pred_FEV1, lln_FEV1, z_FEV1, pctpred_FEV1, pred_FVC, ...
 ```
 
-## Sex encoding
+## Notes
 
-- `1` = male, `2` = female (same as rspiro)
-
-## Height
-
-Height in cm. Values below 3 are assumed to be in metres and automatically converted.
+- **Sex encoding:** `1` = male, `2` = female (same as rspiro)
+- **Height:** In cm. Values below 3 are assumed to be in metres and automatically converted.
+- **Age range:** 18–90. Spline data covers 18–84; values outside are clamped with a warning.
+- **No dependencies:** Base R only. Suggests testthat, knitr, rmarkdown for development.
 
 ## Reference
 
 Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
+
+## See also
+
+- [Web calculator](https://rikhardfi.github.io/spirometry-calculator/) — browser-based tool using the same equations
+- [rspiro](https://cran.r-project.org/package=rspiro) — GLI-2012 reference values for R
