@@ -1,0 +1,25 @@
+Package: rkainu
+Title: Finnish Spirometry Reference Values (Kainu et al. 2015)
+Version: 0.1.0
+Authors@R:
+    person("Rikhard", "Mäki-Heikkilä", , "rikhard.maki-heikkila@tuni.fi", role = c("aut", "cre"))
+Description: Predicted values, z-scores, lower limits of normal (LLN), and
+    percent-predicted for Finnish adult spirometry using the Kainu et al. (2015)
+    reference equations. Covers FVC, FEV1, FEV1/FVC, FEV6, FEV1/FEV6, PEF,
+    MMEF, MEF75, MEF50, and MEF25 for adults aged 18-90. The API mirrors
+    'rspiro' for easy side-by-side comparison with GLI-2012 reference values.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Suggests:
+    knitr,
+    readxl,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/rikhardfi/rkainu
+BugReports: https://github.com/rikhardfi/rkainu/issues
+Depends: 
+    R (>= 3.5)
