@@ -18,6 +18,10 @@
     stop("age, height, and sex must have the same length (or length 1).")
   }
 
+  # Reject negative values
+  if (any(height < 0, na.rm = TRUE)) stop("Height must be positive.")
+  if (any(age < 0, na.rm = TRUE)) stop("Age must be positive.")
+
   # Sex validation
   if (any(!sex %in% c(1L, 2L))) {
     stop("sex must be 1 (male) or 2 (female).")
@@ -62,6 +66,7 @@
 #' @param sex Single sex value (1 or 2).
 #' @param age Numeric vector of ages.
 #' @return data.frame with columns mspline, sspline (same length as age).
+#' @importFrom stats approx
 #' @noRd
 .get_spline <- function(param, sex, age) {
   # Subset spline table for this param/sex
