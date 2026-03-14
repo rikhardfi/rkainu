@@ -1,0 +1,3 @@
+[submodule "spirometry-calculator"]
+	path = spirometry-calculator
+	url = https://github.com/rikhardfi/spirometry-calculator.git
