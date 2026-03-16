@@ -1,13 +1,14 @@
 Package: rkainu
-Title: Finnish Spirometry Reference Values (Kainu et al. 2015)
-Version: 0.1.0
+Title: Finnish Spirometry and DLCO Reference Values (Kainu et al. 2015, 2017)
+Version: 0.2.0
 Authors@R:
     person("Rikhard", "Mäki-Heikkilä", , "rikhard.maki-heikkila@tuni.fi", role = c("aut", "cre"))
 Description: Predicted values, z-scores, lower limits of normal (LLN), and
-    percent-predicted for Finnish adult spirometry using the Kainu et al. (2015)
-    reference equations. Covers FVC, FEV1, FEV1/FVC, FEV6, FEV1/FEV6, PEF,
-    MMEF, MEF75, MEF50, and MEF25 for adults aged 18-90. The API mirrors
-    'rspiro' for easy side-by-side comparison with GLI-2012 reference values.
+    percent-predicted for Finnish adult spirometry (Kainu et al. 2015) and
+    diffusing capacity (DLCO; Kainu et al. 2017). Spirometry covers FVC, FEV1,
+    FEV1/FVC, FEV6, FEV1/FEV6, PEF, MMEF, MEF75, MEF50, and MEF25 for adults
+    aged 18-90. DLCO covers DLCOc, DLCOc/VA (KCO), and VA. The spirometry API
+    mirrors 'rspiro' for easy side-by-side comparison with GLI-2012 values.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
