@@ -3,3 +3,9 @@
 ^.*\.Rproj$
 ^LICENSE\.md$
 ^\.github$
+^spirometry-calculator$
+^\.DS_Store$
+^diffusion capacity$
+^cran-comments\.md$
+^README\.Rmd$
+^\.claude$

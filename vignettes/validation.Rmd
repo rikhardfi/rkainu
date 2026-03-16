@@ -1,8 +1,8 @@
 ---
-title: "Validating rkainu against Kainu et al. (2015)"
+title: "Validating rkainu against published reference values"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Validating rkainu against Kainu et al. (2015)}
+  %\VignetteIndexEntry{Validating rkainu against published reference values}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rkainu)
 ```
 
-## Reference
+## Spirometry (Kainu et al. 2015)
 
 Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for
 Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
@@ -20,31 +20,26 @@ Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
 The `rkainu` package implements the reference equations from this paper,
 covering 10 spirometry parameters for Finnish adults aged 18--90.
 
-## Validation against published values
-
-We compare `kainu_pred()` output against expected values computed directly
-from the published equations and supplement data.
-
 ### Males, 177 cm
 
-```{r males}
+```{r spiro_males}
 ages <- c(20, 30, 40, 50, 60, 70, 80)
 params <- c("FVC", "FEV1", "FEV1FVC", "PEF")
 
 male_pred <- kainu_pred(ages, 177, 1, params)
 male_pred <- cbind(age = ages, round(male_pred, 3))
-knitr::kable(male_pred, caption = "Predicted values — males, 177 cm")
+knitr::kable(male_pred, caption = "Predicted values -- males, 177 cm")
 ```
 
 ### Females, 164 cm
 
-```{r females}
+```{r spiro_females}
 female_pred <- kainu_pred(ages, 164, 2, params)
 female_pred <- cbind(age = ages, round(female_pred, 3))
-knitr::kable(female_pred, caption = "Predicted values — females, 164 cm")
+knitr::kable(female_pred, caption = "Predicted values -- females, 164 cm")
 ```
 
-## FEV1 decline with age
+### FEV1 decline with age
 
 ```{r fev1_plot, fig.width=6, fig.height=4}
 age_seq <- seq(18, 84, by = 1)
@@ -53,14 +48,14 @@ fev1_f <- kainu_pred(age_seq, 164, 2, "FEV1")
 
 plot(age_seq, fev1_m, type = "l", lwd = 2, col = "#235787",
      xlab = "Age (years)", ylab = "Predicted FEV1 (L)",
-     main = "Kainu et al. (2015) — Predicted FEV1 vs age",
+     main = "Kainu et al. (2015) -- Predicted FEV1 vs age",
      ylim = c(1.5, 5.5))
 lines(age_seq, fev1_f, lwd = 2, col = "#e63946")
 legend("topright", legend = c("Male 177 cm", "Female 164 cm"),
        col = c("#235787", "#e63946"), lwd = 2, bty = "n")
 ```
 
-## Z-score verification
+### Z-score verification
 
 When the observed value equals the predicted value, the z-score should be
 exactly zero:
@@ -72,7 +67,7 @@ cat("Predicted FEV1:", round(pred_fev1, 4), "L\n")
 cat("Z-score when observed = predicted:", z, "\n")
 ```
 
-## Lower limit of normal
+### Lower limit of normal
 
 ```{r lln}
 lln_table <- data.frame(
@@ -82,10 +77,10 @@ lln_table <- data.frame(
   pred_FVC = round(kainu_pred(ages, 177, 1, "FVC"), 3),
   LLN_FVC = round(kainu_lln(ages, 177, 1, "FVC"), 3)
 )
-knitr::kable(lln_table, caption = "Predicted vs LLN — males, 177 cm")
+knitr::kable(lln_table, caption = "Predicted vs LLN -- males, 177 cm")
 ```
 
-## Data.frame workflow
+### Data.frame workflow
 
 ```{r df_example}
 patients <- data.frame(
@@ -99,4 +94,65 @@ patients <- data.frame(
 
 result <- kainu_df(patients, params = c("FEV1", "FVC"))
 knitr::kable(round(result[, -1], 2), caption = "kainu_df() output")
+```
+
+## DLCO (Kainu et al. 2017)
+
+Kainu A, Timonen KL, Toikka J, et al. Reference values of diffusing
+capacity for Finnish adults. *Clin Physiol Funct Imaging*. 2018;38(3):413-420.
+
+DLCO functions require age, height, weight, and sex. Three parameters are
+available: DLCOc (corrected for haemoglobin), DLCOc/VA (transfer coefficient),
+and VA (alveolar volume).
+
+### Predicted values
+
+```{r dlco_pred}
+dlco_table <- data.frame(
+  age = ages,
+  DLCO_male = round(dlco_pred(ages, 177, 80, 1, "DLCO"), 2),
+  DLCO_female = round(dlco_pred(ages, 164, 65, 2, "DLCO"), 2),
+  DLCOVA_male = round(dlco_pred(ages, 177, 80, 1, "DLCOVA"), 2),
+  DLCOVA_female = round(dlco_pred(ages, 164, 65, 2, "DLCOVA"), 2),
+  VA_male = round(dlco_pred(ages, 177, 80, 1, "VA"), 2),
+  VA_female = round(dlco_pred(ages, 164, 65, 2, "VA"), 2)
+)
+knitr::kable(dlco_table, caption = "Predicted DLCO values by age and sex")
+```
+
+### DLCO decline with age
+
+```{r dlco_plot, fig.width=6, fig.height=4}
+dlco_m <- dlco_pred(age_seq, 177, 80, 1, "DLCO")
+dlco_f <- dlco_pred(age_seq, 164, 65, 2, "DLCO")
+
+plot(age_seq, dlco_m, type = "l", lwd = 2, col = "#235787",
+     xlab = "Age (years)", ylab = "Predicted DLCOc (mmol/min/kPa)",
+     main = "Kainu et al. (2017) -- Predicted DLCOc vs age",
+     ylim = range(c(dlco_m, dlco_f)))
+lines(age_seq, dlco_f, lwd = 2, col = "#e63946")
+legend("topright", legend = c("Male 177 cm, 80 kg", "Female 164 cm, 65 kg"),
+       col = c("#235787", "#e63946"), lwd = 2, bty = "n")
+```
+
+### DLCO z-score verification
+
+```{r dlco_zscore_check}
+pred_dlco <- dlco_pred(50, 177, 80, 1, "DLCO")
+z_dlco <- dlco_zscore(50, 177, 80, 1, DLCO = pred_dlco)
+cat("Predicted DLCOc:", round(pred_dlco, 4), "mmol/min/kPa\n")
+cat("Z-score when observed = predicted:", round(z_dlco, 6), "\n")
+```
+
+### DLCO lower limit of normal
+
+```{r dlco_lln}
+dlco_lln_table <- data.frame(
+  age = ages,
+  pred_DLCO = round(dlco_pred(ages, 177, 80, 1, "DLCO"), 2),
+  LLN_DLCO = round(dlco_lln(ages, 177, 80, 1, "DLCO"), 2),
+  pred_VA = round(dlco_pred(ages, 177, 80, 1, "VA"), 2),
+  LLN_VA = round(dlco_lln(ages, 177, 80, 1, "VA"), 2)
+)
+knitr::kable(dlco_lln_table, caption = "Predicted vs LLN -- males, 177 cm, 80 kg")
 ```

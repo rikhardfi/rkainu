@@ -75,13 +75,15 @@ kainu_df(patients, params = c("FEV1", "FVC"))
 - **Age range:** 18–90. Spline data covers 18–84; values outside are clamped with a warning.
 - **No dependencies:** Base R only. Suggests testthat, knitr, rmarkdown for development.
 
-## Reference
+## References
 
-Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
+Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358. doi: [10.1111/cpf.12237](https://doi.org/10.1111/cpf.12237)
+
+Kainu A, Timonen KL, Toikka J, et al. Reference values of diffusing capacity for Finnish adults. *Clin Physiol Funct Imaging*. 2018;38(3):413-420. doi: [10.1111/cpf.12432](https://doi.org/10.1111/cpf.12432)
 
 ## License
 
-CC BY-ND 4.0 — Free to use and share with attribution. No modifications allowed. See [LICENSE](LICENSE).
+GPL (>= 3).
 
 ## See also
 

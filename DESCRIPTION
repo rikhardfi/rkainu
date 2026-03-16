@@ -9,7 +9,7 @@ Description: Predicted values, z-scores, lower limits of normal (LLN), and
     FEV1/FVC, FEV6, FEV1/FEV6, PEF, MMEF, MEF75, MEF50, and MEF25 for adults
     aged 18-90. DLCO covers DLCOc, DLCOc/VA (KCO), and VA. The spirometry API
     mirrors 'rspiro' for easy side-by-side comparison with GLI-2012 values.
-License: file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

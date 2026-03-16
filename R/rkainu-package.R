@@ -1,13 +1,10 @@
-#' rkainu: Finnish Spirometry Reference Values
+#' rkainu: Finnish Spirometry and DLCO Reference Values
 #'
 #' Predicted values, z-scores, lower limits of normal (LLN), and percent
-#' predicted for Finnish adult spirometry using the Kainu et al. (2015)
-#' reference equations.
+#' predicted for Finnish adult spirometry (Kainu et al. 2015) and diffusing
+#' capacity (DLCO; Kainu et al. 2017).
 #'
-#' The package covers 10 spirometry parameters: FVC, FEV1, FEV1/FVC, FEV6,
-#' FEV1/FEV6, PEF, MMEF, MEF75, MEF50, and MEF25, for adults aged 18-90.
-#'
-#' @section Main functions:
+#' @section Spirometry functions:
 #' \describe{
 #'   \item{[kainu_pred()]}{Predicted (mean) values}
 #'   \item{[kainu_lln()]}{Lower limit of normal (5th percentile)}
@@ -16,9 +13,21 @@
 #'   \item{[kainu_df()]}{Data.frame convenience wrapper}
 #' }
 #'
+#' @section DLCO functions:
+#' \describe{
+#'   \item{[dlco_pred()]}{Predicted DLCO, DLCO/VA, or VA}
+#'   \item{[dlco_lln()]}{Lower limit of normal for DLCO parameters}
+#'   \item{[dlco_zscore()]}{Z-scores from observed DLCO values}
+#' }
+#'
 #' @references
 #' Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for
-#' Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
+#' Finnish adults. \emph{Clin Physiol Funct Imaging}. 2016;36(5):346-358.
+#' \doi{10.1111/cpf.12237}
+#'
+#' Kainu A, Timonen KL, Toikka J, et al. Reference values of diffusing
+#' capacity for Finnish adults. \emph{Clin Physiol Funct Imaging}.
+#' 2018;38(3):413-420. \doi{10.1111/cpf.12432}
 #'
 #' @keywords internal
 "_PACKAGE"
