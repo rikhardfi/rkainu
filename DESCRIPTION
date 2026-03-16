@@ -1,6 +1,6 @@
 Package: rkainu
 Title: Finnish Spirometry and DLCO Reference Values (Kainu et al. 2015, 2017)
-Version: 0.2.0
+Version: 0.2.1
 Authors@R:
     person("Rikhard", "Mäki-Heikkilä", , "rikhard.maki-heikkila@tuni.fi", role = c("aut", "cre"))
 Description: Predicted values, z-scores, lower limits of normal (LLN), and

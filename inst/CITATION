@@ -43,7 +43,7 @@ bibentry(
   title    = "rkainu: Finnish Spirometry and DLCO Reference Values",
   author   = person("Rikhard", "Mäki-Heikkilä"),
   year     = "2026",
-  note     = "R package version 0.2.0",
+  note     = "R package version 0.2.1",
   url      = "https://github.com/rikhardfi/rkainu",
   header   = "To cite the R package itself use:"
 )
