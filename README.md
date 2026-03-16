@@ -89,3 +89,37 @@ GPL (>= 3).
 
 - [Web calculator](https://rikhardfi.github.io/spirometry-calculator/) — browser-based tool using the same equations
 - [rspiro](https://cran.r-project.org/package=rspiro) — GLI-2012 reference values for R
+
+---
+
+## Suomeksi
+
+R-paketti suomalaisten aikuisten spirometrian (Kainu ym. 2015) ja diffuusiokapasiteetin (DLCO; Kainu ym. 2017) viitearvoille.
+
+Spirometria kattaa 10 parametria 18–90-vuotiaille aikuisille: FVC, FEV1, FEV1/FVC, FEV6, FEV1/FEV6, PEF, MMEF, MEF75, MEF50 ja MEF25. DLCO kattaa DLCOc:n, DLCOc/VA:n (KCO) ja VA:n.
+
+Paketti laskee ennustearvot, viitearvon alarajat (LLN), z-pisteet ja prosentuaaliset ennustearvot. Spirometrian rajapinta vastaa [rspiro](https://cran.r-project.org/package=rspiro)-pakettia, joten vertailu GLI-2012-viitearvoihin on helppoa.
+
+**Verkkolaskuri:** [rikhardfi.github.io/spirometry-calculator](https://rikhardfi.github.io/spirometry-calculator/)
+
+### Asennus
+
+```r
+# install.packages("devtools")
+devtools::install_github("rikhardfi/rkainu")
+```
+
+### Pikaesimerkki
+
+```r
+library(rkainu)
+
+# Ennustearvo: FEV1, 50-vuotias mies, 177 cm
+kainu_pred(50, 177, 1, "FEV1")
+
+# Z-pistemäärä mitatulle arvolle FEV1 = 3.5 L
+kainu_zscore(50, 177, 1, FEV1 = 3.5)
+
+# Viitearvon alaraja (LLN)
+kainu_lln(50, 177, 1, "FEV1")
+```
