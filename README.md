@@ -1,8 +1,8 @@
 # rkainu
 
-Finnish spirometry reference values from Kainu et al. (2015) as an R package.
+Finnish spirometry (Kainu et al. 2015) and DLCO (Kainu et al. 2017) reference values as an R package.
 
-Covers 10 parameters for Finnish adults aged 18–90. The API mirrors [rspiro](https://cran.r-project.org/package=rspiro) for easy side-by-side comparison with GLI-2012.
+Spirometry covers 10 parameters for Finnish adults aged 18–90. DLCO covers DLCOc, DLCOc/VA (KCO), and VA. The spirometry API mirrors [rspiro](https://cran.r-project.org/package=rspiro) for easy side-by-side comparison with GLI-2012.
 
 **Web calculator:** [rikhardfi.github.io/spirometry-calculator](https://rikhardfi.github.io/spirometry-calculator/)
 
@@ -78,6 +78,10 @@ kainu_df(patients, params = c("FEV1", "FVC"))
 ## Reference
 
 Kainu A, Timonen KL, Toikka J, et al. Reference values of spirometry for Finnish adults. *Clin Physiol Funct Imaging*. 2016;36(5):346-358.
+
+## License
+
+CC BY-ND 4.0 — Free to use and share with attribution. No modifications allowed. See [LICENSE](LICENSE).
 
 ## See also
 
